@@ -3,6 +3,7 @@ import { Anek_Gujarati } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./globals.css";
+import Nav from "./components/Nav";
 
 config.autoAddCss = false;
 

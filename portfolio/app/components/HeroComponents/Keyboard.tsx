@@ -15,6 +15,8 @@ const Keyboard = () => {
     defaults: { duration: 0.5, ease: "back.out(1)" },
   });
 
+  // TODO: - Fix disappearing keyboard bug
+
   // gsap animation
   const entranceAnimation = () => {
     if (keyBoardRef.current) {

@@ -5,7 +5,7 @@ import ScrollingText from "./ScrollingText";
 const Hero = () => {
   return (
     <div>
-      <div className="h-dvh w-full flex flex-col items-center justify-center bg-[url(/grid.png)] bg-sand bg-blend-multiply">
+      <div className="h-dvh w-full flex flex-col items-center justify-center ">
         <Keyboard />
         <ScrollingText />
       </div>
