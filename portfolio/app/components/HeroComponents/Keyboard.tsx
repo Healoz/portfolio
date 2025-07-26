@@ -16,6 +16,7 @@ const Keyboard = () => {
   });
 
   // TODO: - Fix disappearing keyboard bug
+  // TODO: - Make background type the letters, so remove the randomness
 
   // gsap animation
   const entranceAnimation = () => {
@@ -54,7 +55,7 @@ const Keyboard = () => {
   return (
     <div
       ref={keyBoardRef}
-      className="w-[95%] h-[50%] md:w-[70%] md:h-[75%] max-w-6xl relative overflow-hidden mb-10"
+      className="w-[95%] h-[50%] md:w-[70%] md:h-[75%] max-w-6xl relative overflow-hidden mb-10 rotate-20"
     >
       <div
         onMouseEnter={keyPressAnimation}
