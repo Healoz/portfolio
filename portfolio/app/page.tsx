@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Keyboard from "./components/Keyboard";
-import Hero from "./components/Hero";
+import Keyboard from "./components/HeroComponents/Keyboard";
+import Hero from "./components/HeroComponents/Hero";
 
 export default function Home() {
   return (

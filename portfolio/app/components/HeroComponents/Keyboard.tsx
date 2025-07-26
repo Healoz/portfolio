@@ -8,14 +8,17 @@ const Keyboard = () => {
   const keys = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const keyBoardRef = useRef<HTMLDivElement>(null);
   const keyRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const animationTimeline = gsap.timeline({
+  const entranceTimeline = gsap.timeline({
+    defaults: { duration: 0.5, ease: "back.out(1)" },
+  });
+  const loopTimeline = gsap.timeline({
     defaults: { duration: 0.5, ease: "back.out(1)" },
   });
 
   // gsap animation
   const entranceAnimation = () => {
     if (keyBoardRef.current) {
-      animationTimeline.from(keyBoardRef.current, {
+      entranceTimeline.from(keyBoardRef.current, {
         scale: 0.1,
         y: "-100vh",
         opacity: 0,
@@ -25,6 +28,7 @@ const Keyboard = () => {
     }
   };
 
+  // TODO: - Make the keyboard animation loop when you hover the keyboard
   const keyPressAnimation = () => {
     const randomizedKeys = keyRefs.current
       .map((keyRef, index) => ({ keyRef, index }))
@@ -33,7 +37,7 @@ const Keyboard = () => {
 
     randomizedKeys.forEach(({ keyRef }, index) => {
       if (keyRef) {
-        animationTimeline
+        loopTimeline
           .to(keyRef, { y: 100, scale: 0.9 }, "<0.1")
           .to(keyRef, { y: 0, scale: 1 }, "<0.1");
       }
@@ -48,7 +52,7 @@ const Keyboard = () => {
   return (
     <div
       ref={keyBoardRef}
-      className="w-[95%] h-[50%] md:w-[70%] md:h-[75%] max-w-6xl relative overflow-hidden"
+      className="w-[95%] h-[50%] md:w-[70%] md:h-[75%] max-w-6xl relative overflow-hidden mb-10"
     >
       <div
         onMouseEnter={keyPressAnimation}
