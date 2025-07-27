@@ -7,10 +7,13 @@ interface KeyBoardKeyProps {
 
 const KeyboardKey: FC<KeyBoardKeyProps> = ({ keyNumber, keyRef }) => {
   return (
-    <div ref={keyRef} className="absolute w-full h-full">
+    <div
+      ref={keyRef}
+      className={`absolute w-full h-full key-number${keyNumber}`}
+    >
       <img
         src={`/keyboard/key_${keyNumber}.png`}
-        className="w-full h-full object-contain absolute "
+        className="w-full h-full object-contain absolute"
       />
     </div>
   );

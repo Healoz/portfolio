@@ -1,8 +1,18 @@
-import React from "react";
+import React, { FC, useEffect } from "react";
 import { ReactSVG } from "react-svg";
 
-const BackgroundLetters = () => {
+interface BackgroundLettersProps {
+  shouldPlay: boolean;
+}
+
+const BackgroundLetters: FC<BackgroundLettersProps> = ({ shouldPlay }) => {
   const letters = ["L", "A", "U", "R", "E", "N", "E", "A", "S", "T", "E", "R"];
+
+  useEffect(() => {
+    if (shouldPlay) {
+      console.log("play animation");
+    }
+  }, [shouldPlay]);
 
   const lettersElements = letters.map((letter, index) => (
     <ReactSVG

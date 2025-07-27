@@ -1,11 +1,34 @@
 "use client";
-import React from "react";
+import React, { FC } from "react";
 import KeyboardKey from "./KeyboardKey";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const Keyboard = () => {
-  const keys = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+interface KeyboardProps {
+  playTextTypingAnimation: () => void;
+}
+
+const Keyboard: FC<KeyboardProps> = ({ playTextTypingAnimation }) => {
+  type KeyObject = {
+    fileNumber: number;
+    letter: string;
+  };
+
+  const keys: KeyObject[] = [
+    { fileNumber: 2, letter: "N" },
+    { fileNumber: 3, letter: "R" },
+    { fileNumber: 4, letter: "E" },
+    { fileNumber: 5, letter: "E" },
+    { fileNumber: 6, letter: "R" },
+    { fileNumber: 7, letter: "T" },
+    { fileNumber: 8, letter: "U" },
+    { fileNumber: 9, letter: "S" },
+    { fileNumber: 10, letter: "A" },
+    { fileNumber: 11, letter: "A" },
+    { fileNumber: 12, letter: "L" },
+    { fileNumber: 13, letter: "E" },
+  ];
+  const typingOrder = [12, 10, 8, 6, 4, 2, 13, 11, 9, 7, 5, 3];
   const keyBoardRef = useRef<HTMLDivElement>(null);
   const keyRefs = useRef<(HTMLDivElement | null)[]>([]);
   const entranceTimeline = gsap.timeline({
@@ -16,7 +39,6 @@ const Keyboard = () => {
   });
 
   // TODO: - Fix disappearing keyboard bug
-  // TODO: - Make background type the letters, so remove the randomness
 
   // gsap animation
   const entranceAnimation = () => {
@@ -29,27 +51,21 @@ const Keyboard = () => {
         duration: 2,
       });
     }
+    keyPressAnimation();
   };
 
   // TODO: - Make the keyboard animation loop when you hover the keyboard
   const keyPressAnimation = () => {
-    const randomizedKeys = keyRefs.current
-      .map((keyRef, index) => ({ keyRef, index }))
-      .filter((item) => item.keyRef !== null)
-      .sort(() => Math.random() - 0.5);
-
-    randomizedKeys.forEach(({ keyRef }, index) => {
-      if (keyRef) {
-        loopTimeline
-          .to(keyRef, { y: 100, scale: 0.9 }, "<0.1")
-          .to(keyRef, { y: 0, scale: 1 }, "<0.1");
-      }
+    playTextTypingAnimation();
+    typingOrder.forEach((fileNumber) => {
+      loopTimeline
+        .to(`.key-number${fileNumber}`, { y: 100, scale: 0.9 }, "<0.1")
+        .to(`.key-number${fileNumber}`, { y: 0, scale: 1 }, "<0.1");
     });
   };
 
   useEffect(() => {
     entranceAnimation();
-    keyPressAnimation();
   }, []);
 
   return (
@@ -65,10 +81,10 @@ const Keyboard = () => {
         src="/keyboard/base_1.png"
         className="w-full h-full object-contain absolute"
       />
-      {keys.map((keyNumber, index) => (
+      {keys.map((key, index) => (
         <KeyboardKey
-          keyNumber={keyNumber}
-          key={keyNumber}
+          keyNumber={key.fileNumber}
+          key={key.fileNumber}
           keyRef={(element) => (keyRefs.current[index] = element)}
         />
       ))}
