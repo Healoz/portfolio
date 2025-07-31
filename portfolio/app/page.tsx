@@ -16,7 +16,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-amber-100 text-black h-screen">
+    <div className="bg-sand text-black h-screen">
       <Nav />
       <Hero />
       <AboutMe />
