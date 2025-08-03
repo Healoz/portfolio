@@ -3,24 +3,19 @@ import { ReactSVG } from "react-svg";
 import { gsap } from "gsap";
 
 interface BackgroundLettersProps {
-  shouldPlay: boolean;
+  xOffset: number;
   colour: string;
 }
 
-const BackgroundLetters: FC<BackgroundLettersProps> = ({
-  shouldPlay,
-  colour,
-}) => {
+const BackgroundLetters: FC<BackgroundLettersProps> = ({ xOffset, colour }) => {
   const letters = ["L", "A", "U", "R", "E", "N", "E", "A", "S", "T", "E", "R"];
 
   const timeline = gsap.timeline({
     defaults: { duration: 0.5, ease: "back.out(1)" },
   });
 
+  // play animation on instantiation
   useEffect(() => {
-    if (!shouldPlay) {
-      return;
-    }
     timeline.fromTo(
       ".letter-svg",
       {
@@ -28,11 +23,14 @@ const BackgroundLetters: FC<BackgroundLettersProps> = ({
       },
       { y: 0, stagger: 0.2 }
     );
-  }, [shouldPlay]);
+  }, []);
 
   const lettersElements = letters.map((letter, index) => (
-    <div className="overflow-hidden flex-1" key={index}>
-      <div className="flex-1 h-full letter-svg">
+    <div
+      className={`overflow-hidden flex-1 translate-x-${xOffset}`}
+      key={index}
+    >
+      <div className="flex-1 h-full letter-svg ">
         <ReactSVG
           src={`/nameLetters/${letter}.svg`}
           className="h-full relative"
@@ -44,7 +42,7 @@ const BackgroundLetters: FC<BackgroundLettersProps> = ({
 
             const path = svg.querySelector("path");
             if (path) {
-              path.setAttribute("fill", "#FFD000");
+              path.setAttribute("fill", colour);
               path.setAttribute("stroke", "#fffbe8");
             }
           }}

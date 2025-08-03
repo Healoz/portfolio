@@ -5,10 +5,10 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 interface KeyboardProps {
-  playTextTypingAnimation: () => void;
+  addBgLetterElement: () => void;
 }
 
-const Keyboard: FC<KeyboardProps> = ({ playTextTypingAnimation }) => {
+const Keyboard: FC<KeyboardProps> = ({ addBgLetterElement }) => {
   type KeyObject = {
     fileNumber: number;
     letter: string;
@@ -51,17 +51,20 @@ const Keyboard: FC<KeyboardProps> = ({ playTextTypingAnimation }) => {
         duration: 2,
       });
     }
-    keyPressAnimation();
   };
 
   // TODO: - Make the keyboard animation loop when you hover the keyboard
   const keyPressAnimation = () => {
-    playTextTypingAnimation();
     typingOrder.forEach((fileNumber) => {
       loopTimeline
         .to(`.key-number${fileNumber}`, { y: 100, scale: 0.9 }, "<0.1")
         .to(`.key-number${fileNumber}`, { y: 0, scale: 1 }, "<0.1");
     });
+  };
+
+  const handleMouseEnter = () => {
+    keyPressAnimation();
+    addBgLetterElement();
   };
 
   useEffect(() => {
@@ -74,7 +77,7 @@ const Keyboard: FC<KeyboardProps> = ({ playTextTypingAnimation }) => {
       className="w-[95%] h-[50%] md:w-[70%] md:h-[75%] max-w-6xl relative overflow-hidden mb-10 rotate-20"
     >
       <div
-        onMouseEnter={keyPressAnimation}
+        onMouseEnter={handleMouseEnter}
         className="absolute z-10 w-full rotate-150 top-40 h-[40%] md:top-70 md:h-[30%] lg:top-50 lg:h-[45%]"
       ></div>
       <img

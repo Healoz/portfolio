@@ -1,14 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Keyboard from "./Keyboard";
 import ScrollingText from "./ScrollingText";
 import BackgroundLetters from "./BackgroundLetters";
+import Button from "../Button";
 
 const Hero = () => {
   const [shouldPlayTextAnimation, setShouldPlayTextAnimation] = useState(false);
-  const [backgroundNameAmount, setBackgroundNameAmount] = useState(0);
-  const triggerBackgroundAnimation = () => {
-    setShouldPlayTextAnimation(true);
-    setTimeout(() => setShouldPlayTextAnimation(false), 500);
+  const [backgroundNameAmount, setBackgroundNameAmount] = useState(1);
+  const [currentOffset, setCurrentOffset] = useState(0);
+  const colourSequence = ["#ffd000", "#ff3300", "#606586"];
+  const [currentColourIndex, setCurrentColourIndex] = useState(0);
+
+  const OFFSET_INCREMENT = 10;
+
+  useEffect(() => {
+    console.log("new letters added" + backgroundNameAmount);
+    backgroundNameAmount;
+    // on hover, a new instance of background letter should be created
+  }, [backgroundNameAmount]);
+
+  const addBgLetterElement = () => {
+    // increment to next colour
+    if (currentColourIndex === 2) {
+      setCurrentColourIndex(0);
+    } else {
+      setCurrentColourIndex((prev) => prev + 1); // increment if not 3
+    }
+
+    // increase x Offset
+    setCurrentOffset((prev) => prev + OFFSET_INCREMENT);
+
+    setBackgroundNameAmount((prevAmount) => prevAmount + 1);
+    // increment colourSequence
   };
 
   const backgroundLettersElements = Array.from({
@@ -16,7 +39,10 @@ const Hero = () => {
   }).map((_, i) => {
     return (
       <div key={i}>
-        <BackgroundLetters shouldPlay={shouldPlayTextAnimation} colour="" />
+        <BackgroundLetters
+          xOffset={currentOffset}
+          colour={colourSequence[currentColourIndex]}
+        />
       </div>
     );
   });
@@ -24,9 +50,11 @@ const Hero = () => {
   return (
     <div>
       <div className="h-dvh flex relative">
-        <BackgroundLetters shouldPlay={shouldPlayTextAnimation} colour="" />
+        {backgroundLettersElements}
+        <BackgroundLetters xOffset={30} colour="#ffd000" />
         <div className="h-full w-full flex flex-col items-center justify-center z-10">
-          <Keyboard playTextTypingAnimation={triggerBackgroundAnimation} />
+          <Keyboard addBgLetterElement={addBgLetterElement} />
+          <Button>Get in touch</Button>
           <ScrollingText />
         </div>
       </div>
