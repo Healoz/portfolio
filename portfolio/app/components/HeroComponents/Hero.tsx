@@ -52,9 +52,11 @@ const Hero = () => {
       <div className="h-dvh flex relative">
         {backgroundLettersElements}
         <BackgroundLetters xOffset={30} colour="#ffd000" />
-        <div className="h-full w-full flex flex-col items-center justify-center z-10">
+        <div className="h-full w-full flex flex-col items-center justify-center z-10 relative">
           <Keyboard addBgLetterElement={addBgLetterElement} />
-          <Button>Get in touch</Button>
+          <div className="absolute right-[15%] bottom-[35%]">
+            <Button colour="red-500">Get in touch</Button>
+          </div>
           <ScrollingText />
         </div>
       </div>

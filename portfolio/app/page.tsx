@@ -20,7 +20,6 @@ export default function Home() {
       <Nav />
       <Hero />
       <AboutMe />
-      <AboutMe />
     </div>
   );
 }

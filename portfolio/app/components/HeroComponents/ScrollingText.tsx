@@ -6,11 +6,13 @@ import { gsap } from "gsap";
 
 const ScrollingText = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     // Wait for layout to settle, then measure and animate
     setTimeout(() => {
       setupInfiniteScroll();
+      animateIcons();
     }, 100);
   }, []);
 
@@ -31,6 +33,18 @@ const ScrollingText = () => {
     }
   };
 
+  // rotate stars right
+  const animateIcons = () => {
+    gsap.to(".star-icon", {
+      rotation: 360,
+      duration: 10,
+      ease: "none",
+      repeat: -1,
+    });
+
+    console.log("icon animation set up");
+  };
+
   const textPattern = (
     <div className="flex items-center flex-shrink-0">
       <h1 className="font-extrabold font-heading text-primary-orange whitespace-nowrap">
@@ -38,21 +52,21 @@ const ScrollingText = () => {
       </h1>
       <FontAwesomeIcon
         icon={faStar}
-        className="text-primary-orange rotate-45 flex-shrink-0 m-4"
+        className="text-primary-orange flex-shrink-0 m-4 star-icon"
       />
       <h1 className="font-extrabold font-heading text-primary-orange whitespace-nowrap">
         UI Designer
       </h1>
       <FontAwesomeIcon
         icon={faStar}
-        className="text-primary-orange rotate-45 flex-shrink-0 m-4"
+        className="text-primary-orange flex-shrink-0 m-4 star-icon"
       />
       <h1 className="font-extrabold font-heading text-primary-orange whitespace-nowrap">
         Creative Coder
       </h1>
       <FontAwesomeIcon
         icon={faStar}
-        className="text-primary-orange rotate-45 flex-shrink-0 m-4"
+        className="text-primary-orange flex-shrink-0 m-4 star-icon"
       />
     </div>
   );
