@@ -37,7 +37,7 @@ const ScrollingText = () => {
   const animateIcons = () => {
     gsap.to(".star-icon", {
       rotation: 360,
-      duration: 20,
+      duration: 40,
       ease: "none",
       repeat: -1,
     });
