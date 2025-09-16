@@ -8,7 +8,7 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ children }) => {
   return (
-    <div className="flex gap-6 items-center text-5xl lg:text-7xl ">
+    <div className="flex gap-6 items-center text-5xl lg:text-6xl xl:text-7xl">
       <FontAwesomeIcon
         icon={faStar}
         className="text-primary-orange star-icon"

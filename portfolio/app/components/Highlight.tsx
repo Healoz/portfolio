@@ -18,6 +18,7 @@ const Highlight: FC<HighlightProps> = ({ children }) => {
       duration: 3,
       display: "inline-block",
     });
+    ``;
   };
   return (
     <span className="relative">
