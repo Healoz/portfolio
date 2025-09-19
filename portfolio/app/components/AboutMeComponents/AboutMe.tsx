@@ -65,7 +65,7 @@ const AboutMe = () => {
         <div className="h-full flex items-end mb-20">{funkyEffect}</div>
         <div className="w-full lg:flex-1 mt-6 lg:mt-0 face-image">
           <img
-            src={`/HeadPlaceholder.png`}
+            src={`/ME.png`}
             className="h-auto w-full lg:h-full max-h-[500px] object-contain "
           />
         </div>
