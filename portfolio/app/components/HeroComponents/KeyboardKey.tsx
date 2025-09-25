@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Image from "next/image";
 
 interface KeyBoardKeyProps {
   keyNumber: number;
@@ -11,8 +12,11 @@ const KeyboardKey: FC<KeyBoardKeyProps> = ({ keyNumber, keyRef }) => {
       ref={keyRef}
       className={`absolute w-full h-full key-number${keyNumber}`}
     >
-      <img
+      <Image
         src={`/keyboard/key_${keyNumber}.png`}
+        alt="Keyboard key"
+        width={800}
+        height={300}
         className="w-full h-full object-contain absolute"
       />
     </div>

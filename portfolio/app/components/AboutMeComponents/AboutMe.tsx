@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Image from "next/image";
 import Title from "../Title";
 import Paragraph from "../Paragraph";
 import Highlight from "../Highlight";
@@ -64,8 +65,11 @@ const AboutMe = () => {
         </div>
         <div className="h-full flex items-end mb-20">{funkyEffect}</div>
         <div className="w-full lg:flex-1 mt-6 lg:mt-0 face-image">
-          <img
+          <Image
             src={`/ME.png`}
+            alt="Handrawn cartoon profile of Lauren Easter"
+            width={600}
+            height={600}
             className="h-auto w-full lg:h-full max-h-[500px] object-contain "
           />
         </div>

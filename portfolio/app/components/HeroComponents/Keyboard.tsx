@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import KeyboardKey from "./KeyboardKey";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 interface KeyboardProps {
   addBgLetterElement: () => void;
@@ -80,9 +81,12 @@ const Keyboard: FC<KeyboardProps> = ({ addBgLetterElement }) => {
         onMouseEnter={handleMouseEnter}
         className="absolute z-10 w-full rotate-150 top-40 h-[40%] md:top-70 md:h-[30%] lg:top-50 lg:h-[45%]"
       ></div>
-      <img
+      <Image
         src="/keyboard/base_1.png"
+        alt="Image of the base of a keyboard with no keys"
         className="w-full h-full object-contain absolute"
+        width={800}
+        height={300}
       />
       {keys.map((key, index) => (
         <KeyboardKey
@@ -92,8 +96,11 @@ const Keyboard: FC<KeyboardProps> = ({ addBgLetterElement }) => {
         />
       ))}
 
-      <img
+      <Image
         src="/keyboard/base_14.png"
+        alt="Overlay for the keyboard"
+        width={800}
+        height={300}
         className="w-full h-full object-contain absolute"
       />
     </div>

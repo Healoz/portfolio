@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import AboutMe from "./components/AboutMeComponents/AboutMe";
 import { useEffect } from "react";
 import Skills from "./components/SkillsComponents/Skills";
+import Projects from "./components/ProjectsComponents/Projects";
 
 export default function Home() {
   // getting smooth scroll
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <AboutMe />
       <Skills />
+      <Projects />
     </div>
   );
 }
