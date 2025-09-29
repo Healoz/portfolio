@@ -23,7 +23,9 @@ const ProjectInfo: FC<ProjectInfoProps> = ({ project }) => {
       <h3 className="text-2xl font-semibold">{project.title}</h3>
       <div className="flex gap-3 flex-wrap">{technologoies}</div>
       <p>{project.description}</p>
-      <Button colour="primary-blue">View</Button>
+      <Button colour="primary-blue" externalLink={project.liveUrl}>
+        View
+      </Button>
     </article>
   );
 };

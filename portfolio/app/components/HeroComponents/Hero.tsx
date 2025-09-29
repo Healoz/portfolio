@@ -55,7 +55,9 @@ const Hero = () => {
         <div className="h-full w-full flex flex-col items-center justify-center z-10 relative">
           <Keyboard addBgLetterElement={addBgLetterElement} />
           <div className="absolute right-[15%] bottom-[35%]">
-            <Button colour="red-500">Get in touch</Button>
+            <Button colour="red-500" internalLink={"/"}>
+              Get in touch
+            </Button>
           </div>
           <ScrollingText />
         </div>

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ContentContainer from "../ContentContainer";
 import Title from "../Title";
 import Image from "next/image";
 import ProjectDisplay from "./ProjectDisplay";
 import ProjectInfo from "./ProjectInfo";
 import { Project } from "@/app/types/project";
+import { getProjects } from "@/app/utils/projects";
 
 // Test data
 const testProjects: Project[] = [
@@ -53,8 +54,27 @@ const testProjects: Project[] = [
 ];
 
 const Projects = () => {
-  const [selectedProjectId, setSelectedProjectId] = useState("1");
-  const [projects, setProjects] = useState<Project[]>(testProjects);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>();
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const fetchedProjects = await getProjects();
+      setProjects(fetchedProjects);
+      if (fetchedProjects.length > 0) {
+        setSelectedProjectId(fetchedProjects[0].id);
+        console.log(fetchedProjects);
+      }
+
+      console.log(projects);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
+  };
 
   const selectedProject = projects.find(
     (project) => project.id === selectedProjectId
